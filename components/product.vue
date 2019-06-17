@@ -8,14 +8,13 @@
     <div class="card-content">
       <div class="media wrap-content">
         <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <span class="tag is-light is-medium">$75</span>
+          <p class="title is-4">{{ name }}</p>
+          <span class="tag is-light is-medium">{{ price }}</span>
         </div>
       </div>
   
       <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris.
+        {{ description }}
       </div>
       <div class="columns">
         <div class="column is-7">
@@ -28,6 +27,29 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    id: {
+      type: Number,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .wrap-content {
