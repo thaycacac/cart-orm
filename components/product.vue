@@ -9,10 +9,9 @@
       <div class="media wrap-content">
         <div class="media-content">
           <p class="title is-4">{{ name }}</p>
-          <span class="tag is-light is-medium">{{ price }}</span>
+          <span class="tag is-light is-medium">${{ price }}</span>
         </div>
       </div>
-  
       <div class="content">
         {{ description | getDescription }}
       </div>
@@ -40,7 +39,7 @@ export default {
       required: true
     },
     price: {
-      type: String,
+      type: Number,
       required: true
     },
     description: {
