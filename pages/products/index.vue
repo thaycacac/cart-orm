@@ -1,17 +1,20 @@
 <template>
-  <div class="container">
-    <div class="columns wrap-products">
-      <div class="column">
-        <product />
-      </div>
-      <div class="column">
-        <product />
-      </div>
-      <div class="column">
-        <product />
-      </div>
-      <div class="column">
-        <product />
+  <div>
+    <navbar />
+    <div class="container">
+      <div class="columns wrap-products">
+        <div class="column">
+          <product />
+        </div>
+        <div class="column">
+          <product />
+        </div>
+        <div class="column">
+          <product />
+        </div>
+        <div class="column">
+          <product />
+        </div>
       </div>
     </div>
   </div>
@@ -19,9 +22,11 @@
 
 <script>
 import Product from '@/components/product'
+import Navbar from '@/components/navbar'
 export default {
   components: {
-    Product
+    Product,
+    Navbar
   }
 }
 </script>
