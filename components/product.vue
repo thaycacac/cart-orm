@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <nuxt-link class="card" :to="`/products/${id}`">
     <div class="card-image">
       <figure class="image is-4by3">
         <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
@@ -14,7 +14,7 @@
       </div>
   
       <div class="content">
-        {{ description }}
+        {{ description | getDescription }}
       </div>
       <div class="columns">
         <div class="column is-7">
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -47,7 +47,15 @@ export default {
       type: String,
       required: true
     }
-  }
+  },
+  filters: {
+    getDescription: function(description) {
+      const res =
+        description.substring(0, 100) + '...'
+      return res
+    },
+  },
+
 }
 </script>
 

@@ -5,7 +5,7 @@
       <div class="columns wrap-products">
         <div class="column" v-for="(product, index) in products" :key="index">
           <product
-            :id="products.id"
+            :id="product.id"
             :name="product.name"
             :price="product.price"
             :description="product.description"
