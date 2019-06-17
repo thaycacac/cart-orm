@@ -1,2 +1,3 @@
 # cart-orm
-Store cart using vuex orm
+
+Store simple shopping cart using vuex orm
