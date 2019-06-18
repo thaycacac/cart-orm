@@ -1,7 +1,6 @@
 import { Model } from '@vuex-orm/core'
-import Order from './Order'
 
-export default class User extends Model {
+export default class Product extends Model {
   static entity = 'products'
 
   static fields () {
@@ -10,7 +9,6 @@ export default class User extends Model {
       name: this.string(''),
       description: this.string(''),
       price: this.number(0),
-      orders: this.belongsToMany(Order, 'product_id')
     }
   }
 }

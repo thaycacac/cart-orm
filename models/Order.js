@@ -2,7 +2,7 @@ import { Model } from '@vuex-orm/core'
 import User from './User'
 import Product from './Product'
 
-export default class Todo extends Model {
+export default class Order extends Model {
   static entity = 'orders'
 
   static fields () {
