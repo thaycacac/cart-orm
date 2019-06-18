@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="content">
-        {{ description }}
+        {{ description | getDescription }}
       </div>
       <div class="columns">
         <div class="column is-7">
