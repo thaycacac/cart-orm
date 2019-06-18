@@ -17,10 +17,17 @@
       </div>
       <div class="columns">
         <div class="column is-7">
-          <input class="input is-small" type="number" value="1" min="1" max="100">
+          <input
+            class="input is-small"
+            type="number"
+            value="1"
+            min="1"
+            max="100"
+            v-model="quantity"
+          />
         </div>
         <div class="column is-5">
-          <a class="button is-primary is-small">Add to cart</a>
+          <a class="button is-primary is-small" @click="addOrder">Add to cart</a>
         </div>
       </div>
     </div>
@@ -47,6 +54,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      quantity: 1,
+    }
+  },
   filters: {
     getDescription: function(description) {
       const res =
@@ -54,7 +66,17 @@ export default {
       return res
     },
   },
-
+  methods: {
+    addOrder() {
+      this.$emit('updateOrder', {
+        'id': this.id,
+        'name': this.name,
+        'price': this.price,
+        'quantity': parseInt(this.quantity)
+      })
+      this.quantity = "1"
+    }
+  }
 }
 </script>
 

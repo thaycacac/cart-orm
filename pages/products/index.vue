@@ -9,6 +9,7 @@
             :name="product.name"
             :price="product.price"
             :description="product.description"
+            @updateOrder="addOrder($event)"
           />
         </div>
       </div>
@@ -26,6 +27,7 @@ export default {
   },
   data() {
     return {
+      orders: [],
       products: [
         {
           'id': 1,
@@ -52,6 +54,21 @@ export default {
           'price': 65
         },
       ]
+    }
+  },
+  methods: {
+    addOrder(order) {
+      const isOrder = this.orders.find(item => {
+        return item.id === order.id
+      })
+      if (isOrder) {
+        const indexUpdate = this.orders.findIndex(item => {
+          return item.id === order.id
+        })
+        this.orders[indexUpdate].quantity = parseInt(isOrder.quantity) + parseInt(order.quantity)
+      } else {
+        this.orders.push(order)
+      }
     }
   }
 }
