@@ -9,7 +9,6 @@
             :name="product.name"
             :price="product.price"
             :description="product.description"
-            @updateOrder="addOrder($event)"
           />
         </div>
       </div>
@@ -28,29 +27,9 @@ export default {
     Product,
     Navbar
   },
-  data() {
-    return {
-      orders: [],
-    }
-  },
   async fetch () {
     const initialData = await initProduct()
     ProductModel.create({ data: initialData })
-  },
-  methods: {
-    addOrder(order) {
-      const isOrder = this.orders.find(item => {
-        return item.id === order.id
-      })
-      if (isOrder) {
-        const indexUpdate = this.orders.findIndex(item => {
-          return item.id === order.id
-        })
-        this.orders[indexUpdate].quantity = parseInt(isOrder.quantity) + parseInt(order.quantity)
-      } else {
-        this.orders.push(order)
-      }
-    }
   },
   computed: {
     products() {

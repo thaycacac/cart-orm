@@ -1,8 +1,10 @@
 <template>
-  <div  class="card">
+  <div class="card">
     <nuxt-link class="card-image" :to="`/products/${id}`">
       <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        <img
+          src="https://bulma.io/images/placeholders/1280x960.png"
+          alt="Placeholder image">
       </figure>
     </nuxt-link>
     <div class="card-content">
@@ -27,7 +29,12 @@
           />
         </div>
         <div class="column is-5">
-          <a class="button is-primary is-small" @click="addOrder">Add to cart</a>
+          <a
+            class="button is-primary is-small"
+            @click="addOrder"
+          >
+            Add to cart
+          </a>
         </div>
       </div>
     </div>
@@ -35,6 +42,8 @@
 </template>
 
 <script>
+import Order from '@/models/Order'
+import Product from '@/models/Product'
 export default {
   props: {
     id: {
@@ -68,12 +77,20 @@ export default {
   },
   methods: {
     addOrder() {
-      this.$emit('updateOrder', {
-        'id': this.id,
-        'name': this.name,
-        'price': this.price,
-        'quantity': parseInt(this.quantity)
-      })
+      const order = Order.query().where('id', this.id).get()
+      if (order.length) {
+        console.log(order)
+      } else {
+        Order.insert({
+        data: {
+            id: this.id,
+            name: this.name,
+            price: this.price,
+            user_id: 1,
+            product_id: 1,
+          }
+        })
+      }
       this.quantity = "1"
     }
   }
