@@ -2,9 +2,9 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item">
-          Hello Thaycacac
-        </a>
+        <nuxt-link class="navbar-item has-text-bold" to="/products">
+          Simple cart
+        </nuxt-link>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
