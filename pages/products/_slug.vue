@@ -10,22 +10,16 @@
         </div>
         <div class="column is-5 wrap-content">
           <div>
-            <h1 class="title is-1">John Smith</h1>
-            <span class="tag is-light is-medium">$75</span>
-            <div class="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Phasellus nec iaculis mauris.
-            </div>
+            <h1 class="title is-1">{{ name }}</h1>
+            <span class="tag is-light is-medium">${{ price }}</span>
+            <div class="content">{{ description }}</div>
           </div>
           <div class="columns">
             <div class="column is-8">
-              <input class="input" type="number" value="1" min="1" max="100">
+              <input class="input" type="number" min="1" max="100" v-model="quantity">
             </div>
             <div class="column is-4">
-              <a class="button is-primary button-add">Add to cart</a>
+              <a class="button is-primary button-add" @click="addOrder">Add to cart</a>
             </div>
           </div>
         </div>
@@ -37,10 +31,46 @@
 <script>
 import Product from '@/components/product'
 import Navbar from '@/components/navbar'
+
+import ProductModel from '@/models/Product'
+import OrderItemModel from '@/models/OrderItem'
+
 export default {
   components: {
     Product,
     Navbar
+  },
+  data() {
+    return {
+      quantity: 1
+    }
+  },
+  asyncData({ params }) {
+    const product = ProductModel.find(params.slug)
+    return product
+  },
+  methods: {
+    addOrder() {
+      this.$toast.show('Add ' + this.quantity + ' items to cart').goAway(2000)
+      const orderItem = OrderItemModel.query().where('id', this.id).get()
+      if (orderItem.length) {
+        OrderItemModel.update({
+          where: this.id,
+          data: { quantity: (parseInt(this.quantity) + orderItem[0].quantity) }
+        })
+      } else {
+        OrderItemModel.insert({
+        data: {
+            id: this.id,
+            quantity: this.quantity,
+            user_id: 1,
+            order_id: 1,
+            product_id: 1,
+          }
+        })
+      }
+      this.quantity = "1"
+    }
   }
 }
 </script>

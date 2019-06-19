@@ -42,9 +42,7 @@
 </template>
 
 <script>
-import OrderItem from '@/models/OrderItem'
-import Product from '@/models/Product'
-import User from '@/models/User'
+import OrderItemModel from '@/models/OrderItem'
 export default {
   props: {
     id: {
@@ -79,14 +77,14 @@ export default {
   methods: {
     addOrder() {
       this.$toast.show('Add ' + this.quantity + ' items to cart').goAway(2000)
-      const orderItem = OrderItem.query().where('id', this.id).get()
+      const orderItem = OrderItemModel.query().where('id', this.id).get()
       if (orderItem.length) {
-        OrderItem.update({
+        OrderItemModel.update({
           where: this.id,
           data: { quantity: (parseInt(this.quantity) + orderItem[0].quantity) }
         })
       } else {
-        OrderItem.insert({
+        OrderItemModel.insert({
         data: {
             id: this.id,
             quantity: this.quantity,
