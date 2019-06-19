@@ -79,13 +79,17 @@ export default {
     addOrder() {
       const order = Order.query().where('id', this.id).get()
       if (order.length) {
-        console.log(order)
+        Order.update({
+          where: 1,
+          data (order) {
+            order.quantity +=this.quantity
+          }
+        })
       } else {
         Order.insert({
         data: {
             id: this.id,
-            name: this.name,
-            price: this.price,
+            quantity: this.quantity,
             user_id: 1,
             product_id: 1,
           }

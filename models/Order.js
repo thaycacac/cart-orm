@@ -1,6 +1,5 @@
 import { Model } from '@vuex-orm/core'
-import User from './User'
-import Product from './Product'
+import OrderItem from './OrderItem'
 
 export default class Order extends Model {
   static entity = 'orders'
@@ -8,11 +7,8 @@ export default class Order extends Model {
   static fields () {
     return {
       id: this.increment(),
-      user_id: this.number(0),
-      product_id: this.number(0),
-      product: this.hasMany(Product, 'product_id'),
-      user: this.belongsTo(User, 'user_id'),
-      quantity: this.number(0)
+      user_id: this.attr(null),
+      order_items: this.hasMany(OrderItem, 'order_id')
     }
   }
 }
