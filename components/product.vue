@@ -42,8 +42,9 @@
 </template>
 
 <script>
-import Order from '@/models/Order'
+import OrderItem from '@/models/OrderItem'
 import Product from '@/models/Product'
+import User from '@/models/User'
 export default {
   props: {
     id: {
@@ -77,20 +78,21 @@ export default {
   },
   methods: {
     addOrder() {
-      const order = Order.query().where('id', this.id).get()
-      if (order.length) {
-        Order.update({
-          where: 1,
-          data (order) {
-            order.quantity +=this.quantity
-          }
+      const orderItem = OrderItem.query().where('id', this.id).get()
+      if (orderItem.length) {
+        OrderItem.update({
+          where: this.id,
+          data: { quantity: (parseInt(this.quantity) + orderItem[0].quantity) }
+        }).then((user) => {
+          console.log(user)
         })
       } else {
-        Order.insert({
+        OrderItem.insert({
         data: {
             id: this.id,
             quantity: this.quantity,
             user_id: 1,
+            order_id: 1,
             product_id: 1,
           }
         })
