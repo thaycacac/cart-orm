@@ -18,18 +18,27 @@
 
 <script>
 import ProductModel from '@/models/Product'
+import UserModel from '@/models/User'
+import OrderModel from '@/models/Order'
+
 import Product from '@/components/product'
 import Navbar from '@/components/navbar'
-import { initProduct } from '@/data'
+
+import { initProduct, initUser, initOrder } from '@/data'
 import { getters } from 'vuex'
+
 export default {
   components: {
     Product,
     Navbar
   },
   async fetch () {
-    const initialData = await initProduct()
-    ProductModel.create({ data: initialData })
+    const initialProduct = await initProduct()
+    ProductModel.create({ data: initialProduct })
+    const initialUser = await initUser()
+    UserModel.create({ data: initialUser })
+    const initialOrder = await initOrder()
+    OrderModel.create({ data: initialOrder })
   },
   computed: {
     products() {
