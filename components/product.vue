@@ -78,13 +78,12 @@ export default {
   },
   methods: {
     addOrder() {
+      this.$toast.show('Add ' + this.quantity + ' items to cart').goAway(2000)
       const orderItem = OrderItem.query().where('id', this.id).get()
       if (orderItem.length) {
         OrderItem.update({
           where: this.id,
           data: { quantity: (parseInt(this.quantity) + orderItem[0].quantity) }
-        }).then((user) => {
-          console.log(user)
         })
       } else {
         OrderItem.insert({
