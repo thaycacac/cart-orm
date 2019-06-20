@@ -20,6 +20,7 @@
           :price="order.product.price"
           :quantity="order.quantity"
         />
+        <p class="title is-3 has-text-right">Total: {{ total }}$</p>
         <div class="button is-primary is-large checkout">Checkout</div>
       </div>
     </div>
@@ -56,6 +57,17 @@ export default {
         return listOrder
       } catch(e) {
         return []
+      }
+    },
+    total() {
+      try {
+        let total = 0;
+        this.orderItems.forEach(item => {
+          total += item.quantity * item.product.price
+        });
+        return total
+      } catch(e) {
+        return 0
       }
     }
   },
