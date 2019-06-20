@@ -23,7 +23,7 @@
                   {{ numberOrderItem }}
                 </span>
               </nuxt-link>
-              <a class="button is-light">
+              <a class="button is-light" @click="logout">
                 Log out
               </a>
             </div>
@@ -50,6 +50,19 @@ export default {
       }
     }
   },
+  methods: {
+    logout() {
+      console.log('abcde')
+      UserModel.create({ data: {
+        id: null,
+        username: null,
+        fullname: null
+      } })
+        .then(() => {
+          this.$router.push('/')
+        })
+    }
+  }
 }
 </script>
 

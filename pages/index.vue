@@ -42,10 +42,10 @@ export default {
   },
   methods: {
     login() {
-      UserModel.create({ data:  {
+      UserModel.create({ data: {
         id: 1,
-        username: 'thaycacac',
-        fullname: 'Pham Ngoc Hoa'
+        username: this.username,
+        fullname: this.fullname
       } }).then(() => {
         this.$router.push('/products')
       })
