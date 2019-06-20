@@ -18,13 +18,12 @@
 
 <script>
 import ProductModel from '@/models/Product'
-import UserModel from '@/models/User'
 import OrderModel from '@/models/Order'
 
 import Product from '@/components/product'
 import Navbar from '@/components/navbar'
 
-import { initProduct, initUser, initOrder } from '@/data'
+import { initProduct, initOrder } from '@/data'
 import { getters } from 'vuex'
 
 export default {
@@ -34,9 +33,7 @@ export default {
   },
   async fetch () {
     const initialProduct = await initProduct()
-    ProductModel.create({ data: initialProduct })
-    const initialUser = await initUser()
-    UserModel.create({ data: initialUser })
+    ProductModel.create({ data: initialProduct })   
     const initialOrder = await initOrder()
     OrderModel.create({ data: initialOrder })
   },

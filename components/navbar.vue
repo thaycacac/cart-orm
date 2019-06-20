@@ -5,6 +5,7 @@
         <nuxt-link class="navbar-item has-text-bold" to="/products">
           Simple cart
         </nuxt-link>
+        <p class="navbar-item">Hello {{ fullname }}</p>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -35,12 +36,20 @@
 
 <script>
 import OrderItemModel from '@/models/OrderItem'
+import UserModel from '@/models/User'
 export default {
   computed: {
     numberOrderItem() {
       return OrderItemModel.all().length
+    },
+    fullname() {
+      try {
+        return UserModel.all()[0].fullname
+      } catch(e) {
+        return ''
+      }
     }
-  }
+  },
 }
 </script>
 

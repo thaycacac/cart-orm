@@ -27,14 +27,6 @@ export async function initProduct() {
   ]
 }
 
-export async function initUser() {
-  return {
-    $id: 1,
-    username: 'thaycacac',
-    fullname: 'Pham Ngoc Hoa'
-  }
-}
-
 export async function initOrder() {
   return {
     $id: 1,
