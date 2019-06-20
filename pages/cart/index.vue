@@ -20,7 +20,7 @@
           :price="order.product.price"
           :quantity="order.quantity"
         />
-        <div class="button is-primary is-large checkout" @click="test">Checkout</div>
+        <div class="button is-primary is-large checkout">Checkout</div>
       </div>
     </div>
   </div>
