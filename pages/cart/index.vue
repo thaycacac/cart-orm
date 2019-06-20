@@ -30,7 +30,6 @@
 import Product from '@/components/product'
 import Navbar from '@/components/navbar'
 import Order from '@/components/order'
-
 import OrderItemModel from '@/models/OrderItem'
 import OrderModel from '@/models/Order'
 export default {

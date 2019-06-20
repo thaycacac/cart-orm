@@ -32,10 +32,14 @@ export default {
     Navbar
   },
   async fetch () {
-    const initialProduct = await initProduct()
-    ProductModel.create({ data: initialProduct })   
-    const initialOrder = await initOrder()
-    OrderModel.create({ data: initialOrder })
+    if (!ProductModel.all().length) {
+      const initialProduct = await initProduct()
+      ProductModel.create({ data: initialProduct }) 
+    }
+    if (!OrderModel.all().length) {
+      const initialOrder = await initOrder()
+      OrderModel.create({ data: initialOrder })
+    }
   },
   computed: {
     products() {
