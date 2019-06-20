@@ -60,28 +60,6 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      orders: [
-        {
-          'id': '1',
-          'name': 'Cold Brew with Cascara Cold Foam',
-          'price': 75,
-          'quantity': 10,
-        },
-        {
-          'name': 'Iced Coffee',
-          'price': 60,
-          'quantity': 8,
-        },
-        {
-          'name': 'Iced Coffee with Milk',
-          'price': 65,
-          'quantity': 25,
-        }
-      ]
-    }
-  }
 }
 </script>
 

@@ -11,8 +11,8 @@
     <div class="column is-2">
       <div class="buttons has-addons">
         <span  v-if="!edit" class="button" @click="edit = !edit">Edit</span>
-        <span v-if="edit" class="button" @click="doneOrder">Done</span>
-        <span class="button">Delete</span>
+        <span v-if="edit" class="button" @click="editOrder">Done</span>
+        <span class="button" @click="deleteOrder">Delete</span>
       </div>
     </div>
   </div>
@@ -51,13 +51,18 @@ export default {
     }
   },
   methods: {
-    doneOrder() {
+    editOrder() {
       this.edit = false
       OrderItemModel.update({
         where: this.id,
         data: {
           quantity: this.quantityFake
         }
+      })
+    },
+    deleteOrder() {
+      OrderItemModel.delete({
+        where: this.id
       })
     }
   }
