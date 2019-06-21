@@ -28,6 +28,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/vuex-persist', ssr: false },
   ],
   /*
   ** Nuxt.js modules
@@ -37,6 +38,7 @@ export default {
     '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/toast'
   ],
   /*
   ** Axios module configuration

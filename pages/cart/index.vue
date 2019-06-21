@@ -12,14 +12,15 @@
           <div class="column is-2">Action</div>
         </div>
         <order
-          v-for="(order, index) in orders"
+          v-for="(order, index) in orderItems"
           :index="index + 1"
           :key="index"
           :id="order.id"
-          :name="order.name"
-          :price="order.price"
+          :name="order.product.name"
+          :price="order.product.price"
           :quantity="order.quantity"
         />
+        <p class="title is-3 has-text-right">Total: {{ total }}$</p>
         <div class="button is-primary is-large checkout">Checkout</div>
       </div>
     </div>
@@ -30,34 +31,46 @@
 import Product from '@/components/product'
 import Navbar from '@/components/navbar'
 import Order from '@/components/order'
+import OrderItemModel from '@/models/OrderItem'
+import OrderModel from '@/models/Order'
 export default {
   components: {
     Product,
     Navbar,
     Order
   },
-  data() {
-    return {
-      orders: [
-        {
-          'id': '1',
-          'name': 'Cold Brew with Cascara Cold Foam',
-          'price': 75,
-          'quantity': 10,
-        },
-        {
-          'name': 'Iced Coffee',
-          'price': 60,
-          'quantity': 8,
-        },
-        {
-          'name': 'Iced Coffee with Milk',
-          'price': 65,
-          'quantity': 25,
-        }
-      ]
+  computed: {
+    orderItems() {
+      try {
+        const listOrder = OrderModel
+          .query()
+          .with('order_items')
+          .with('user')
+          .find(1)
+          .order_items
+          .map(order_item => {
+            return OrderItemModel
+              .query()
+              .with('product')
+              .find(order_item.id)
+          })
+        return listOrder
+      } catch(e) {
+        return []
+      }
+    },
+    total() {
+      try {
+        let total = 0;
+        this.orderItems.forEach(item => {
+          total += item.quantity * item.product.price
+        });
+        return total
+      } catch(e) {
+        return 0
+      }
     }
-  }
+  },
 }
 </script>
 

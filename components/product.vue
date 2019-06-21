@@ -1,10 +1,12 @@
 <template>
-  <nuxt-link class="card" :to="`/products/${id}`">
-    <div class="card-image">
+  <div class="card">
+    <nuxt-link class="card-image" :to="`/products/${id}`">
       <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        <img
+          src="https://bulma.io/images/placeholders/1280x960.png"
+          alt="Placeholder image">
       </figure>
-    </div>
+    </nuxt-link>
     <div class="card-content">
       <div class="media wrap-content">
         <div class="media-content">
@@ -17,17 +19,30 @@
       </div>
       <div class="columns">
         <div class="column is-7">
-          <input class="input is-small" type="number" value="1" min="1" max="100">
+          <input
+            class="input is-small"
+            type="number"
+            value="1"
+            min="1"
+            max="100"
+            v-model="quantity"
+          />
         </div>
         <div class="column is-5">
-          <a class="button is-primary is-small">Add to cart</a>
+          <a
+            class="button is-primary is-small"
+            @click="addOrder"
+          >
+            Add to cart
+          </a>
         </div>
       </div>
     </div>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
+import OrderItemModel from '@/models/OrderItem'
 export default {
   props: {
     id: {
@@ -47,6 +62,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      quantity: 1,
+    }
+  },
   filters: {
     getDescription: function(description) {
       const res =
@@ -54,7 +74,29 @@ export default {
       return res
     },
   },
-
+  methods: {
+    addOrder() {
+      this.$toast.show('Add ' + this.quantity + ' items to cart').goAway(2000)
+      const orderItem = OrderItemModel.query().where('id', this.id).get()
+      if (orderItem.length) {
+        OrderItemModel.update({
+          where: this.id,
+          data: { quantity: (parseInt(this.quantity) + orderItem[0].quantity) }
+        })
+      } else {
+        OrderItemModel.insert({
+        data: {
+            id: this.id,
+            quantity: this.quantity,
+            user_id: 1,
+            order_id: 1,
+            product_id: 1,
+          }
+        })
+      }
+      this.quantity = "1"
+    }
+  }
 }
 </script>
 
