@@ -12,7 +12,6 @@
           />
         </div>
       </div>
-
       <div class="field">
         <label class="label">Fullname</label>
         <div class="control">
