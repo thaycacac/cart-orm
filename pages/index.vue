@@ -7,7 +7,6 @@
           <input class="input" type="text" placeholder="e.g thaycacac">
         </div>
       </div>
-
       <div class="field">
         <label class="label">Fullname</label>
         <div class="control">
@@ -20,12 +19,6 @@
     </form>
   </div>
 </template>
-
-<script>
-
-export default {
-}
-</script>
 
 <style lang="scss">
 .box-login {
