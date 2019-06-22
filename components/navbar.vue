@@ -41,6 +41,7 @@
 
 <script>
 import OrderItemModel from '@/models/OrderItem'
+import OrderModel from '@/models/Order'
 import UserModel from '@/models/User'
 
 export default {
@@ -58,15 +59,10 @@ export default {
   },
   methods: {
     logout() {
-      UserModel.create({
-        data: {
-          id: null,
-          username: null,
-          fullname: null
-        }
-      }).then(() => {
-        this.$router.push('/')
-      })
+      UserModel.deleteAll()
+      OrderModel.deleteAll()
+      OrderItemModel.deleteAll()
+      this.$router.push('/')
     }
   }
 }

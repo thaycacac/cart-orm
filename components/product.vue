@@ -8,34 +8,36 @@
         />
       </figure>
     </nuxt-link>
-    <div class="card-content">
-      <div class="media wrap-content">
-        <div class="media-content">
-          <p class="title is-4">{{ name }}</p>
-          <span class="tag is-light is-medium">${{ price }}</span>
+    <nuxt-link class="card-image" :to="`/products/${id}`">
+      <div class="card-content">
+        <div class="media wrap-content">
+          <div class="media-content">
+            <p class="title is-4">{{ name }}</p>
+            <span class="tag is-light is-medium">${{ price }}</span>
+          </div>
+        </div>
+        <div class="content">
+          {{ description | getDescription }}
+        </div>
+        <div class="columns">
+          <div class="column is-7">
+            <input
+              v-model="quantity"
+              class="input is-small"
+              type="number"
+              value="1"
+              min="1"
+              max="100"
+            />
+          </div>
+          <div class="column is-5">
+            <a class="button is-primary is-small" @click="addOrder">
+              Add to cart
+            </a>
+          </div>
         </div>
       </div>
-      <div class="content">
-        {{ description | getDescription }}
-      </div>
-      <div class="columns">
-        <div class="column is-7">
-          <input
-            v-model="quantity"
-            class="input is-small"
-            type="number"
-            value="1"
-            min="1"
-            max="100"
-          />
-        </div>
-        <div class="column is-5">
-          <a class="button is-primary is-small" @click="addOrder">
-            Add to cart
-          </a>
-        </div>
-      </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
@@ -107,5 +109,8 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+}
+a {
+  color: #363636;
 }
 </style>
