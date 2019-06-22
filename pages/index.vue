@@ -59,6 +59,6 @@ export default {
 <style lang="scss">
 .box-login {
   width: 50%;
-  margin: 2rem auto;
+  margin: 32px auto;
 }
 </style>

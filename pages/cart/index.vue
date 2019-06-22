@@ -72,7 +72,7 @@ export default {
 
 <style lang="scss">
 .wrap-cart {
-  margin-top: 2rem;
+  margin-top: 32px;
   .checkout {
     float: right;
   }

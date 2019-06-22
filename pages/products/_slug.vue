@@ -84,13 +84,13 @@ export default {
 
 <style lang="scss">
 .wrap-products {
-  margin-top: 2rem;
+  margin-top: 32px;
   .wrap-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     .content {
-      margin-top: 2rem;
+      margin-top: 32px;
     }
   }
   .button-add {

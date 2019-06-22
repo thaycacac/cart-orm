@@ -71,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-  margin-top: 1rem;
+  margin-top: 16px;
   margin-right: 0 !important;
   margin-left: 0 !important;
 }

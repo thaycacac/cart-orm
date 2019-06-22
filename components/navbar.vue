@@ -46,11 +46,11 @@ import UserModel from '@/models/User'
 export default {
   computed: {
     numberOrderItem() {
-      return OrderItemModel.all().length
+      return OrderItemModel.query().count()
     },
     fullname() {
       try {
-        return UserModel.all()[0].fullname
+        return UserModel.find(1).fullname
       } catch (e) {
         return ''
       }
@@ -58,7 +58,6 @@ export default {
   },
   methods: {
     logout() {
-      console.log('abcde')
       UserModel.create({
         data: {
           id: null,

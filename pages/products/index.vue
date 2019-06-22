@@ -34,11 +34,11 @@ export default {
     }
   },
   fetch() {
-    if (!ProductModel.all().length) {
+    if (!ProductModel.query().count()) {
       const initialProduct = initProduct()
       ProductModel.create({ data: initialProduct })
     }
-    if (!OrderModel.all().length) {
+    if (!OrderModel.query().count()) {
       const initialOrder = initOrder()
       OrderModel.create({ data: initialOrder })
     }
@@ -48,6 +48,6 @@ export default {
 
 <style lang="scss">
 .wrap-products {
-  margin-top: 2rem;
+  margin-top: 32px;
 }
 </style>
