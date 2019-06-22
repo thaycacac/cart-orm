@@ -5,7 +5,7 @@ import Order from './Order'
 export default class OrderItem extends Model {
   static entity = 'order_items'
 
-  static fields () {
+  static fields() {
     return {
       id: this.increment(),
       order_id: this.attr(null),

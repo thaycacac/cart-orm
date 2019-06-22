@@ -5,10 +5,10 @@
         <label class="label">Username</label>
         <div class="control">
           <input
+            v-model="username"
             class="input"
             type="text"
             placeholder="e.g thaycacac"
-            v-model="username"
           />
         </div>
       </div>
@@ -16,10 +16,10 @@
         <label class="label">Fullname</label>
         <div class="control">
           <input
+            v-model="fullname"
             class="input"
             type="text"
             placeholder="e.g. Pham Ngoc Hoa"
-            v-model="fullname"
           />
         </div>
       </div>
@@ -41,11 +41,13 @@ export default {
   },
   methods: {
     login() {
-      UserModel.create({ data: {
-        id: 1,
-        username: this.username,
-        fullname: this.fullname
-      } }).then(() => {
+      UserModel.create({
+        data: {
+          id: 1,
+          username: this.username,
+          fullname: this.fullname
+        }
+      }).then(() => {
         this.$router.push('/products')
       })
     }

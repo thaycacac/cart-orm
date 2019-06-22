@@ -3,7 +3,7 @@
     <navbar />
     <div class="container">
       <div class="columns wrap-products">
-        <div class="column" v-for="(product, index) in products" :key="index">
+        <div v-for="(product, index) in products" :key="index" class="column">
           <product
             :id="product.id"
             :name="product.name"
@@ -24,26 +24,25 @@ import Product from '@/components/product'
 import Navbar from '@/components/navbar'
 
 import { initProduct, initOrder } from '@/data'
-import { getters } from 'vuex'
 
 export default {
   components: {
     Product,
     Navbar
   },
-  async fetch () {
+  computed: {
+    products() {
+      return ProductModel.all()
+    }
+  },
+  async fetch() {
     if (!ProductModel.all().length) {
       const initialProduct = await initProduct()
-      ProductModel.create({ data: initialProduct }) 
+      ProductModel.create({ data: initialProduct })
     }
     if (!OrderModel.all().length) {
       const initialOrder = await initOrder()
       OrderModel.create({ data: initialOrder })
-    }
-  },
-  computed: {
-    products() {
-      return ProductModel.all()
     }
   }
 }

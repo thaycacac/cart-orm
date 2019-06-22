@@ -5,7 +5,7 @@ import User from './User'
 export default class Order extends Model {
   static entity = 'orders'
 
-  static fields () {
+  static fields() {
     return {
       id: this.increment(),
       user_id: this.attr(null),

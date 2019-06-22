@@ -4,13 +4,13 @@
     <div class="column is-6">{{ name }}</div>
     <div v-if="!edit" class="column is-1">{{ quantityFake }}</div>
     <div v-else class="column is-1">
-      <input type="number" class="input" v-model="quantityFake" />
+      <input v-model="quantityFake" type="number" class="input" />
     </div>
     <div class="column is-1">${{ price }}</div>
     <div class="column is-1">${{ quantityFake * price }}</div>
     <div class="column is-2">
       <div class="buttons has-addons">
-        <span  v-if="!edit" class="button" @click="edit = !edit">Edit</span>
+        <span v-if="!edit" class="button" @click="edit = !edit">Edit</span>
         <span v-if="edit" class="button" @click="editOrder">Done</span>
         <span class="button" @click="deleteOrder">Delete</span>
       </div>
@@ -45,7 +45,7 @@ export default {
     }
   },
   data() {
-    return  {
+    return {
       edit: false,
       quantityFake: this.quantity
     }

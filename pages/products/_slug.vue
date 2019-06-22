@@ -5,7 +5,7 @@
       <div class="columns wrap-products">
         <div class="column is-7">
           <figure class="image is-5by4">
-            <img src="https://bulma.io/images/placeholders/256x256.png">
+            <img src="https://bulma.io/images/placeholders/256x256.png" />
           </figure>
         </div>
         <div class="column is-5 wrap-content">
@@ -16,10 +16,18 @@
           </div>
           <div class="columns">
             <div class="column is-8">
-              <input class="input" type="number" min="1" max="100" v-model="quantity">
+              <input
+                v-model="quantity"
+                class="input"
+                type="number"
+                min="1"
+                max="100"
+              />
             </div>
             <div class="column is-4">
-              <a class="button is-primary button-add" @click="addOrder">Add to cart</a>
+              <a class="button is-primary button-add" @click="addOrder">
+                Add to cart
+              </a>
             </div>
           </div>
         </div>
@@ -29,7 +37,6 @@
 </template>
 
 <script>
-import Product from '@/components/product'
 import Navbar from '@/components/navbar'
 
 import ProductModel from '@/models/Product'
@@ -37,7 +44,6 @@ import OrderItemModel from '@/models/OrderItem'
 
 export default {
   components: {
-    Product,
     Navbar
   },
   data() {
@@ -52,24 +58,26 @@ export default {
   methods: {
     addOrder() {
       this.$toast.show('Add ' + this.quantity + ' items to cart').goAway(2000)
-      const orderItem = OrderItemModel.query().where('id', this.id).get()
+      const orderItem = OrderItemModel.query()
+        .where('id', this.id)
+        .get()
       if (orderItem.length) {
         OrderItemModel.update({
           where: this.id,
-          data: { quantity: (parseInt(this.quantity) + orderItem[0].quantity) }
+          data: { quantity: parseInt(this.quantity) + orderItem[0].quantity }
         })
       } else {
         OrderItemModel.insert({
-        data: {
+          data: {
             id: this.id,
             quantity: this.quantity,
             user_id: 1,
             order_id: 1,
-            product_id: 1,
+            product_id: 1
           }
         })
       }
-      this.quantity = "1"
+      this.quantity = '1'
     }
   }
 }

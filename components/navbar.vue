@@ -6,7 +6,13 @@
           Simple cart
         </nuxt-link>
         <p class="navbar-item">Hello {{ fullname }}</p>
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -45,7 +51,7 @@ export default {
     fullname() {
       try {
         return UserModel.all()[0].fullname
-      } catch(e) {
+      } catch (e) {
         return ''
       }
     }
@@ -53,14 +59,15 @@ export default {
   methods: {
     logout() {
       console.log('abcde')
-      UserModel.create({ data: {
-        id: null,
-        username: null,
-        fullname: null
-      } })
-        .then(() => {
-          this.$router.push('/')
-        })
+      UserModel.create({
+        data: {
+          id: null,
+          username: null,
+          fullname: null
+        }
+      }).then(() => {
+        this.$router.push('/')
+      })
     }
   }
 }

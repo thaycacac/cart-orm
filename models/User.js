@@ -4,7 +4,7 @@ import Order from './Order'
 export default class User extends Model {
   static entity = 'users'
 
-  static fields () {
+  static fields() {
     return {
       id: this.increment(),
       username: this.string(''),

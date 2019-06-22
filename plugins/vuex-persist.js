@@ -4,8 +4,8 @@ export default ({ store }) => {
   window.onNuxtReady(() => {
     new VuexPersistence({
       reducer: state => ({
-        entities: state.entities,
-      }),
+        entities: state.entities
+      })
     }).plugin(store)
   })
 }
