@@ -1,24 +1,26 @@
 <template>
-  <div class="card">
-    <nuxt-link class="card-image" :to="`/products/${id}`">
-      <figure class="image is-4by3">
-        <img
-          src="https://bulma.io/images/placeholders/1280x960.png"
-          alt="Placeholder image"
-        />
-      </figure>
-    </nuxt-link>
-    <nuxt-link class="card-image" :to="`/products/${id}`">
+  <no-ssr>
+    <div class="card">
+      <nuxt-link class="card-image" :to="`/products/${id}`">
+        <figure class="image is-4by3">
+          <img
+            src="https://bulma.io/images/placeholders/1280x960.png"
+            alt="Placeholder image"
+          />
+        </figure>
+      </nuxt-link>
       <div class="card-content">
-        <div class="media wrap-content">
-          <div class="media-content">
-            <p class="title is-4">{{ name }}</p>
-            <span class="tag is-light is-medium">${{ price }}</span>
+        <nuxt-link class="card-image" :to="`/products/${id}`">
+          <div class="media wrap-content">
+            <div class="media-content">
+              <p class="title is-4">{{ name }}</p>
+              <span class="tag is-light is-medium">${{ price }}</span>
+            </div>
           </div>
-        </div>
-        <div class="content">
-          {{ description | getDescription }}
-        </div>
+          <div class="content">
+            {{ description | getDescription }}
+          </div>
+        </nuxt-link>
         <div class="columns">
           <div class="column is-7">
             <input
@@ -37,8 +39,8 @@
           </div>
         </div>
       </div>
-    </nuxt-link>
-  </div>
+    </div>
+  </no-ssr>
 </template>
 
 <script>
