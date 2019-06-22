@@ -38,7 +38,6 @@
 
 <script>
 import Navbar from '@/components/navbar'
-
 import ProductModel from '@/models/Product'
 import OrderItemModel from '@/models/OrderItem'
 

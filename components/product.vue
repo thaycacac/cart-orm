@@ -41,6 +41,7 @@
 
 <script>
 import OrderItemModel from '@/models/OrderItem'
+
 export default {
   filters: {
     getDescription: function(description) {

@@ -18,7 +18,6 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
           <div class="navbar-item">
@@ -43,6 +42,7 @@
 <script>
 import OrderItemModel from '@/models/OrderItem'
 import UserModel from '@/models/User'
+
 export default {
   computed: {
     numberOrderItem() {

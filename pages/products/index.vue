@@ -19,10 +19,8 @@
 <script>
 import ProductModel from '@/models/Product'
 import OrderModel from '@/models/Order'
-
 import Product from '@/components/product'
 import Navbar from '@/components/navbar'
-
 import { initProduct, initOrder } from '@/data'
 
 export default {
@@ -35,13 +33,13 @@ export default {
       return ProductModel.all()
     }
   },
-  async fetch() {
+  fetch() {
     if (!ProductModel.all().length) {
-      const initialProduct = await initProduct()
+      const initialProduct = initProduct()
       ProductModel.create({ data: initialProduct })
     }
     if (!OrderModel.all().length) {
-      const initialOrder = await initOrder()
+      const initialOrder = initOrder()
       OrderModel.create({ data: initialOrder })
     }
   }
