@@ -16,7 +16,7 @@
     "@nuxtjs/toast": "^3.2.1",
     "@vuex-orm/core": "^0.31.12",
     "eslint-plugin-jest": "^22.7.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "sass-loader": "^7.1.0",
     "vuex-persist": "^2.0.1"
